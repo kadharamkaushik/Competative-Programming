@@ -1,21 +1,45 @@
 def get_max_profit(stock_prices):
+    print (stock_prices)
     # Calculate the max profit
-    max_share = max(stock_prices)
+    start = stock_prices[0]
+    
+    maxdiff=stock_prices[1]-stock_prices[0]
+    for i in range(1,len(stock_prices)):
+        diff = stock_prices[i]-start
+        
+        if(diff>maxdiff):
+            maxdiff=diff
+        if(stock_prices[i]<start):
+            start = stock_prices[i]
+    print (maxdiff)
+    return maxdiff
 
 
-    return 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Tests
 
 import unittest
 
-
 class Test(unittest.TestCase):
 
     def test_price_goes_up_then_down(self):
-        actual = get_max_profit([1, 5, 3, 2])
-        expected = 4
+        actual = get_max_profit([1,5,4,7,5,1,2,9])
+        expected = 8
         self.assertEqual(actual, expected)
 
     def test_price_goes_down_then_up(self):
@@ -45,6 +69,5 @@ class Test(unittest.TestCase):
     def test_empty_list_raises_error(self):
         with self.assertRaises(Exception):
             get_max_profit([])
-
 
 unittest.main(verbosity=2)

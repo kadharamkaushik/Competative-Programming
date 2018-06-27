@@ -14,6 +14,9 @@ def is_balanced(tree_root):
     left_height = height(tree_root.left)
     right_height = height(tree_root.right)
 
+    if (left_height == 0 or right_height == 0):
+        return True
+
     if (abs(left_height - right_height) <= 1) and is_balanced(tree_root.left) is True and is_balanced(
             tree_root.right) is True:
         return True
@@ -108,7 +111,7 @@ class Test(unittest.TestCase):
         right_right = right.insert_right(3)
         right_right.insert_right(4)
         result = is_balanced(tree)
-        self.assertFalse(result)
+        self.assertTrue(result)
 
 
 unittest.main(verbosity=2)
