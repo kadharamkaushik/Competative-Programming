@@ -4,12 +4,20 @@ import unittest
 def has_palindrome_permutation(the_string):
     # Check if any permutation of the input is a palindrome
     count=0
-    for i in range(0,len(the_string)//2):
-        if (the_string[i]==the_string(len(the_string)-1-i)):
-           count+=1
-    if(count == len(the_string)//2):
-        return True
-    return False
+    dict={}
+    for i in range(0,len(the_string)):
+        if (dict.__contains__(the_string[i])):
+            dict[the_string[i]]+=1
+        else:
+            dict[the_string[i]]=1
+    count=0
+    for key in dict.keys():
+        count+=dict[key]%2
+        # print (the_string+'----'+count)
+        if(count>1):
+            return False
+    # print(the_string + '----' + str(count))
+    return True
 
 
 # Tests
